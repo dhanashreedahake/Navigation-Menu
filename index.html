@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Vincent College</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+    }
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: black;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+      transition: background 0.4s ease, box-shadow 0.4s;
+    }
+    .navbar.scrolled {
+      background-color: #111;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .nav-menu li a:hover {
+      background: linear-gradient(to right, cyan, magenta);
+      color: black;
+      box-shadow: 0 0 10px cyan;
+    }
+    .glow-btn {
+      padding: 8px 18px;
+      background-color: cyan;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px cyan, 0 0 24px cyan;
+      transition: 0.4s;
+    }
+    .glow-btn:hover {
+      background: white;
+      color: cyan;
+      box-shadow: 0 0 20px white, 0 0 40px cyan;
+    }
+    /* Hero Section */
+    .hero {
+      background: url('https://stvincentngp.edu.in/img/ProgramsGalleries/gallery_1650272789.jpg') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding-top: 60px;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 10px black;
+    }
+    .hero p {
+      font-size: 1.4rem;
+      margin-top: 1rem;
+      text-shadow: 1px 1px 5px black;
+    }
+    /* Sections */
+    .section {
+      background-color: #222;
+      padding: 4rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section h2 {
+      color: cyan;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .section p, .course-list {
+      color: #ddd;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .course-list {
+      list-style: none;
+      padding: 1rem;
+    }
+    .course-list li {
+      margin: 0.5rem 0;
+    }
+    /* Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px cyan;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px magenta;
+    }
+    /* Back to top button */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: cyan;
+      color: black;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 0 10px cyan;
+      transition: 0.3s;
+    }
+    #backToTop:hover {
+      background: white;
+      color: cyan;
+      box-shadow: 0 0 20px cyan;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        transition: left 0.3s;
+        padding: 1rem 0;
+      }
+      .nav-menu.active {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="glow-btn">Sign Up</button></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1 id="heroText"></h1>
+    <p>Empowering students for a better tomorrow.</p>
+  </header>
+
+  <section id="about" class="section">
+    <h2>About Our College</h2>
+    <p>St. Vincent College offers world-class education, state-of-the-art infrastructure, and a supportive learning environment. Located in a serene natural setting, we are committed to academic excellence and holistic development.</p>
+  </section>
+
+  <section id="courses" class="section">
+    <h2>Our Popular Courses</h2>
+    <ul class="course-list">
+      <li>B.Tech in Computer Science</li>
+      <li>B.Sc in Information Technology</li>
+      <li>BBA in Business Administration</li>
+      <li>MCA in Computer Applications</li>
+    </ul>
+  </section>
+
+  <section id="gallery" class="section">
+    <h2>Campus Gallery</h2>
+    <div class="gallery">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHG93GWN4eiFyb0lchAM4jlsynMlXSh5RdTg&s" alt="Campus">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCgQFORooIMsyePrbG4Oav0oFJOZzKsK4oaI_nrrL8jTTvuAUdmaXm3GWYR7UaDMUsXmg&usqp=CAU" alt="Classroom">
+      <img src="https://stvincentngp.edu.in/img/ProgramsGalleries/gallery_1650272789.jpg" alt="Annual Event">
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Email: info@stvincentcollege.edu.in<br>
+       Phone: +91 - 9420759203<br>
+       Address: Gavsi Manapur, Wardha Road, Nagpur, Maharashtra India - Pin: 441108.</p>
+  </section>
+
+  <button id="backToTop">↑</button>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+    const backToTop = document.getElementById("backToTop");
+    const sections = document.querySelectorAll(".section");
+
+    // Navbar scroll effect
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+        backToTop.style.display = "block";
+      } else {
+        navbar.classList.remove("scrolled");
+        backToTop.style.display = "none";
+      }
+
+      // Section reveal
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.classList.add("show");
+        }
+      });
+    });
+
+    // Back to top button
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Typing effect
+    const heroText = document.getElementById("heroText");
+    const text = "Welcome to St. Vincent College";
+    let index = 0;
+    function typeEffect() {
+      if (index < text.length) {
+        heroText.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 100);
+      }
+    }
+    typeEffect();
+  </script>
+</body>
+</html>
